@@ -17,4 +17,12 @@ https://qiita.com/kitarow0309/items/8bb6fe2006760ed5a72e
 ### ATLASの導入
 http://aragorn.pb.bialystok.pl/~mars/tutorial/scalapack/
 
-### BLACSの導入
+### BLASの導入
+-> 代わりにOpenBLAS入れてみました
+https://www.kkaneko.jp/tools/ubuntu/cblaslinux.html
+
+上記の方法だとCコンパイル時にエラーが発生するので
+```bash
+sudo apt-get install libopenblas-dev
+```
+を実行したら正常に動作確認できた
