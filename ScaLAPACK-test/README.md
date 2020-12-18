@@ -32,6 +32,7 @@ mpirun -n 8 ./test
 http://aragorn.pb.bialystok.pl/~mars/tutorial/scalapack/
 
 ### BLASの導入
+基本的な行列演算を行うライブラリ
 -> 代わりにOpenBLAS入れてみました
 https://www.kkaneko.jp/tools/ubuntu/cblaslinux.html
 
@@ -40,6 +41,40 @@ https://www.kkaneko.jp/tools/ubuntu/cblaslinux.html
 sudo apt-get install libopenblas-dev
 ```
 を実行したら正常に動作確認できた
+
+- 動作検証
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <cblas.h>
+#define N 2000
+
+int main()
+{
+	// C = AB
+	int i;
+	double *A, *B, *C;
+
+	A = (double *)malloc(sizeof(double) * N * N);
+	B = (double *)malloc(sizeof(double) * N * N);
+	C = (double *)malloc(sizeof(double) * N * N);
+
+	for (i = 0; i < N * N; i++) {
+		A[i] = (double)rand() / RAND_MAX;
+		B[i] = (double)rand() / RAND_MAX;
+	}
+	cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, N, N, N, 1.0, A, N, B, N, 0.0, C, N);
+
+	free(A);
+	free(B);
+	free(C);
+
+	return 0;
+}
+```
+上記を`hoge.c`として保存
+gcc -o hoge hoge.c -L/usr/local/OpenBLAS/lib -lopenblas -lpthread
+でコンパイル
 
 ### LAPACKの導入
 https://qiita.com/AnchorBlues/items/69c1744de818b5e045ab
