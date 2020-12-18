@@ -20,3 +20,20 @@ sudo make install
 sudo vi /etc/ld.so.conf
 sudo /sbin/ldconfig
 ```
+
+### 検証
+以下のコードを実行
+```Fortarn
+program sample
+  implicit none
+  include 'fftw3.f'
+
+  write(*, *) FFTW_ESTIMATE
+
+  stop
+end program sample
+```
+`sample.f90`として保存
+f95 sample.o -L/usr/local/lib -lfftw3
+f95 -o sample  sample.o -L/usr/local/lib -lfftw3
+./sample
