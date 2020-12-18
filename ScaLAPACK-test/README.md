@@ -53,5 +53,5 @@ https://qiita.com/AnchorBlues/items/69c1744de818b5e045ab
 
 
  ## 用語類
- - `.fファイル`: .fは通常「固定形式で記述された・FORTRAN 77 プログラム」と解釈されるので、 .fファイルにFortran90またはFortrn95で新規追加された機能を記述する場合には、別途オプション機能が必要となる。
+ - `.fファイル`: .fは通常「固定形式で記述された・FORTRAN 77 プログラム」と解釈されるので、 .fファイルにFortran90またはFortrn95で新規追加された機能を記述する場合には、別途オプション機能が必要となる。`f90`はFortran90を明示指定
  - `GNUコンパイラ`: `GNU Compiler Collection`, `gcc`のこと

@@ -34,6 +34,6 @@ program sample
 end program sample
 ```
 `sample.f90`として保存
-f95 sample.o -L/usr/local/lib -lfftw3
+f95 -c sample.o -I/usr/local/include
 f95 -o sample  sample.o -L/usr/local/lib -lfftw3
 ./sample
