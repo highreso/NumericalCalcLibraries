@@ -135,3 +135,7 @@ gfortran -o leqsol95 leqsol95.f90 -I/usr/local/include -llapack95 -llapack -lbla
  ## 用語類
  - `.fファイル`: .fは通常「固定形式で記述された・FORTRAN 77 プログラム」と解釈されるので、 .fファイルにFortran90またはFortrn95で新規追加された機能を記述する場合には、別途オプション機能が必要となる。`f90`はFortran90を明示指定
  - `GNUコンパイラ`: `GNU Compiler Collection`, `gcc`のこと
+
+ ## cuSolverの使用
+ /usr/local/cuda/include/
+ pgfortran -o testDn  -fast -Minfo -Mcudalib=cusolver,cublas  testDn.cuf
