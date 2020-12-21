@@ -159,3 +159,41 @@ dpkg -L aocl-linux-gcc-2.2.0
 git clone https://github.com/amd/blis.git
 cd ~/blis
 今回はgccを使用している点に注意
+
+
+gfortran example1.f -lscalapack-openmpi -lblacs-openmpi -lm
+/usr/bin/ld: cannot find -lblacs-openmpi
+collect2: error: ld returned 1 exit status
+
+
+
+
+```bash
+## make失敗時は以下のコマンドでlog作成すると良い
+make > make.log
+code make.log
+```
+
+```bash
+sudo apt search [name]
+# で探せるものは
+sudo apt install [name]
+# でインストールできる
+```
+
+
+## 最終動作検証1221
+[こちらのサイト](https://thelinuxcluster.com/2020/05/13/compiling-scalapack-2-0-2-on-centos-7/)でやれるが別途BLACS必要？
+1. 必要なライブラリ一覧
+- BLAS
+- LAPACK
+- OpenMPI
+- ScaLAPACK
+- BLACS（本来はScaLAPACKに入っているはずだが動作しないので別途入れた, http://www.netlib.org/blacs/）
+
+```bash
+# 検証用コードは以下のコマンドで得る
+wget http://www.netlib.org/scalapack/examples/sample_pssyev_call.f
+mpif90 -O3 -o test2 sample_pssyev_call.f libscalapack.a -llapack -L/usr/local/lapack/lib -lblas -L/usr/local/BLAS
+mpirun ./test2 
+```
