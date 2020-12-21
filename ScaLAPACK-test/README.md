@@ -129,13 +129,33 @@ gfortran -o leqsol95 leqsol95.f90 -I/usr/local/include -llapack95 -llapack -lbla
  sudo ln -s /home/user/scalapack/libscalapack.a /usr/local/lib/libscalapack.a
 
 
- ## 動作検証
+## 動作検証
 
 
- ## 用語類
+## 用語類
  - `.fファイル`: .fは通常「固定形式で記述された・FORTRAN 77 プログラム」と解釈されるので、 .fファイルにFortran90またはFortrn95で新規追加された機能を記述する場合には、別途オプション機能が必要となる。`f90`はFortran90を明示指定
  - `GNUコンパイラ`: `GNU Compiler Collection`, `gcc`のこと
 
- ## cuSolverの使用
+## cuSolverの使用
  /usr/local/cuda/include/
  pgfortran -o testDn  -fast -Minfo -Mcudalib=cusolver,cublas  testDn.cuf
+
+## AOCLの導入
+→ nvd2はIntel Xeon CPUなのでダメ
+AMD Optimizing CPU Libraries
+AMD EPYC CPU用のライブラリセット
+https://developer.amd.com/wp-content/resources/AOCL_User%20Guide_2.2.pdf
+
+dpkg版(.dep)をダウンロードしてインストールした
+```bash
+dpkg -c aocl-linux-gcc-2.2.0_1_amd64.deb
+sudo apt install ./aocl-linux-gcc-2.2.0_1_amd64.deb
+dpkg -s aocl-linux-gcc-2.2.0
+dpkg -L aocl-linux-gcc-2.2.0
+```
+ ll /opt/AMD/aocl/aocl-linux-gcc-2.2.0/amd-scalapack/
+
+### AMD BLIS( Basic LinearAlgebra Subprograms)の導入
+git clone https://github.com/amd/blis.git
+cd ~/blis
+今回はgccを使用している点に注意
